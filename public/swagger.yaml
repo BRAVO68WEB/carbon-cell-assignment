@@ -3,6 +3,7 @@ info:
   title: CarbonCell Task
   version: 1.0.0
 servers:
+  - url: https://cct.b68.dev
   - url: http://localhost:3000
 components:
   securitySchemes:
