@@ -1,0 +1,478 @@
+openapi: 3.0.0
+info:
+  title: CarbonCell Task
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: Task 1
+  - name: Task 2
+  - name: Task 4
+  - name: Task 5
+paths:
+  /task1/login:
+    post:
+      tags:
+        - Task 1
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: username
+                password: password
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Date:
+              schema:
+                type: string
+                example: Mon, 01 Apr 2024 20:52:46 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '170'
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Seccessful Response
+                  value:
+                    message: User logged in successfully
+                    data: >-
+                      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMyMDk5ODQ0ODIzNTUzNjE3OTIifQ.4GC1TmgxGe3Ny2C-rRm3uybH_Z1pFootywJi0ZipZwo
+                example-1:
+                  summary: Unsuccessful Response
+                  value:
+                    message: Invalid password
+                example-2:
+                  summary: Invalid Response
+                  value:
+                    message: Missing required fields
+  /task1/logout:
+    get:
+      tags:
+        - Task 1
+      summary: Logout
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Date:
+              schema:
+                type: string
+                example: Mon, 01 Apr 2024 21:21:33 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '42'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: User logged out successfully
+  /task1/register:
+    post:
+      tags:
+        - Task 1
+      summary: Register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: username
+                password: password
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Date:
+              schema:
+                type: string
+                example: Mon, 01 Apr 2024 20:52:19 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '71'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: User registered successfully
+                data: '3209984482355361792'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Date:
+              schema:
+                type: string
+                example: Mon, 01 Apr 2024 21:04:03 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '83'
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Unsuccessful Response
+                  value:
+                    message: >-
+                      duplicate key value violates unique constraint
+                      "users_username_key"
+                example-1:
+                  summary: Invalid Response
+                  value:
+                    message: Missing required fields
+  /task2/fetch:
+    get:
+      tags:
+        - Task 2
+      summary: Fetch Data
+      parameters:
+        - name: pageNo
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: category
+          in: query
+          schema:
+            type: string
+          example: Calendar
+        - name: perPage
+          in: query
+          schema:
+            type: integer
+          example: '20'
+        - name: searchTerm
+          in: query
+          schema:
+            type: string
+          example: Bank
+        - name: sortBy
+          in: query
+          schema:
+            type: string
+        - name: sortOrder
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Date:
+              schema:
+                type: string
+                example: Mon, 01 Apr 2024 21:48:41 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '241'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                count: 1
+                entries:
+                  - API: UK Bank Holidays
+                    Description: >-
+                      Bank holidays in England and Wales, Scotland and Northern
+                      Ireland
+                    Auth: ''
+                    HTTPS: true
+                    Cors: unknown
+                    Link: https://www.gov.uk/bank-holidays.json
+                    Category: Calendar
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Date:
+              schema:
+                type: string
+                example: Mon, 01 Apr 2024 21:50:24 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '25'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error: No data found
+  /task4/secure:
+    get:
+      tags:
+        - Task 4
+      summary: secure route
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain; charset=UTF-8
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Date:
+              schema:
+                type: string
+                example: Mon, 01 Apr 2024 20:57:43 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '32'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: Hello, this is a secure channel.
+        '401':
+          description: Unauthorized
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            WWW-Authenticate:
+              schema:
+                type: string
+                example: >-
+                  Bearer
+                  realm="http://localhost:3000/task4/secure",error="invalid_request",error_description="no
+                  authorization included in request"
+            content-type:
+              schema:
+                type: string
+                example: text/plain;charset=utf-8
+            Date:
+              schema:
+                type: string
+                example: Mon, 01 Apr 2024 20:57:00 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '12'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: Unauthorized
+  /task4/whoami:
+    get:
+      tags:
+        - Task 4
+      summary: Whoami
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Date:
+              schema:
+                type: string
+                example: Mon, 01 Apr 2024 21:30:54 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '84'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: User details
+                data:
+                  id: '3209984482355361792'
+                  username: username
+  /task5/balance/{account_id}:
+    get:
+      tags:
+        - Task 5
+      summary: Get ETH Balance
+      parameters:
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: '0x4D3A0D0937d22c0e8dA308748E0484310D9f9D43'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Date:
+              schema:
+                type: string
+                example: Mon, 01 Apr 2024 20:58:21 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '93'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                account: '0x4D3A0D0937d22c0e8dA308748E0484310D9f9D43'
+                balance: 0.002988896299054233 ETH
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=UTF-8
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Date:
+              schema:
+                type: string
+                example: Mon, 01 Apr 2024 20:58:45 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '141'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error: >-
+                  Web3 validator found 1 error[s]:
+
+                  value "0x4D3A0D0937d22c0e8dA308748E0484310D9f9D42" at "/0"
+                  must pass "address" validation
+  /health:
+    get:
+      tags:
+        - default
+      summary: Health
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/plain; charset=UTF-8
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Date:
+              schema:
+                type: string
+                example: Mon, 01 Apr 2024 20:43:35 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '3'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: OK!
+  /:
+    get:
+      tags:
+        - default
+      summary: Index
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

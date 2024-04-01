@@ -1,0 +1,32 @@
+{
+  "name": "carboncell",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "migrate": "bun run ./migrations/init.ts",
+    "dev:cf": "wrangler dev index.ts",
+    "deploy:cf": "wrangler deploy --minify index.ts",
+    "dev": "bun run --hot index.ts"
+  },
+  "devDependencies": {
+    "@bravo68web/tsconfig": "^1.2.4",
+    "@cloudflare/workers-types": "^4.20240329.0",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@hono/swagger-ui": "^0.2.1",
+    "@neondatabase/serverless": "^0.9.0",
+    "axios": "^1.6.8",
+    "bcrypt-edge": "^0.0.3",
+    "hono": "^4.1.7",
+    "hyperflake": "^0.1.2",
+    "ioredis": "^5.3.2",
+    "web3-eth": "^4.5.0",
+    "web3-utils": "^4.2.2",
+    "wrangler": "^3.32.0",
+    "zod": "^3.22.4"
+  }
+}
