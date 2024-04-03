@@ -5,7 +5,7 @@ import { logger } from 'hono/logger';
 import { cors } from 'hono/cors';
 import { showRoutes } from 'hono/dev';
 import { jwt } from 'hono/jwt';
-import { swaggerUI } from '@hono/swagger-ui'
+import { apiReference } from '@scalar/hono-api-reference'
 import { serveStatic } from 'hono/bun'
 
 import task1 from './routes/task1.routes';
@@ -37,8 +37,10 @@ app.route('/task5', task5);
 
 app.get(
     '/task3',
-    swaggerUI({
-        url: '/public/swagger.yaml',
+    apiReference({
+        spec: {
+            url: '/public/swagger.yaml',
+        }
     })
 )
 

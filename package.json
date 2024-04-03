@@ -17,8 +17,8 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@hono/swagger-ui": "^0.2.1",
     "@neondatabase/serverless": "^0.9.0",
+    "@scalar/hono-api-reference": "^0.4.27",
     "axios": "^1.6.8",
     "bcrypt-edge": "^0.0.3",
     "hono": "^4.1.7",
